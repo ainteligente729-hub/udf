@@ -1,0 +1,47 @@
+numero = int(input("Digite um número de até 4 dígitos: ")) 
+
+if numero < 0 or numero > 9999: print("Erro: número fora do intervalo permitido (0000 a 9999).") 
+else: # Separar dígitos (aritmética pura) d1 = numero // 1000 d2 = (numero % 1000) // 100 d3 = (numero % 100) // 10 d4 = numero % 10 
+ 
+iguais = 0 
+if d1 == d2: iguais += 1 
+if d1 == d3: iguais += 1 
+if d1 == d4: iguais += 1 
+if d2 == d3: iguais += 1 
+if d2 == d4: iguais += 1 
+if d3 == d4: iguais += 1 
+ 
+if iguais >= 3: 
+    print("Erro: muitos dígitos iguais.") 
+else: 
+    print("\nNúmero informado:", numero, "\n") 
+ 
+    iteracao = 1 
+ 
+    while numero != 6174: 
+ 
+        # Separar novamente os dígitos 
+        d1 = numero // 1000 
+        d2 = (numero % 1000) // 100 
+        d3 = (numero % 100) // 10 
+        d4 = numero % 10 
+ 
+        if d1 > d2: d1, d2 = d2, d1 
+        if d1 > d3: d1, d3 = d3, d1 
+        if d1 > d4: d1, d4 = d4, d1 
+        if d2 > d3: d2, d3 = d3, d2 
+        if d2 > d4: d2, d4 = d4, d2 
+        if d3 > d4: d3, d4 = d4, d3 
+  
+        ndc = d1*1000 + d2*100 + d3*10 + d4 
+ 
+        ndd = d4*1000 + d3*100 + d2*10 + d1 
+ 
+        resultado = ndd - ndc 
+ 
+        print("Iteração", iteracao, ":", ndd, "-", ndc, "=", resultado) 
+ 
+        numero = resultado 
+        iteracao += 1 
+ 
+    print("\nConstante de Kaprekar (6174) atingida!") 
